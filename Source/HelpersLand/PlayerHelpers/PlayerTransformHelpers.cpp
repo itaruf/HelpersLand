@@ -1,43 +1,35 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PlayerTransformHelpers.h"
-#include "Kismet/GameplayStatics.h"
 
-FVector UPlayerTransformHelpers::GetPlayerLocation(const UObject* WorldContextObject)
+#include "PlayerCharacterHelpers.h"
+#include "GameFramework/Character.h"
+
+FVector UPlayerTransformHelpers::GetPlayerLocation(const UObject* WorldContextObject, const int PlayerIndex)
 {
-	FVector PlayerLocation = FVector::ZeroVector;
-	if (const APlayerController* PlayerController = UGameplayStatics::GetPlayerController(WorldContextObject, 0))
-	{
-		if (const APawn* PlayerPawn = PlayerController->GetPawn())
-		{
-			PlayerLocation = PlayerPawn->GetActorLocation();
-		}
-	}
-	return PlayerLocation;
+	const ACharacter* PlayerCharacter = UPlayerCharacterHelpers::GetPlayerCharacterFromPlayerController(WorldContextObject, PlayerIndex);
+	return PlayerCharacter ? PlayerCharacter->GetActorLocation() : FVector::ZeroVector;
 }
 
-FRotator UPlayerTransformHelpers::GetPlayerRotation(const UObject* WorldContextObject)
+FRotator UPlayerTransformHelpers::GetPlayerRotation(const UObject* WorldContextObject, const int PlayerIndex)
 {
-	FRotator PlayerRotation = FRotator::ZeroRotator;
-	if (const APlayerController* PlayerController = UGameplayStatics::GetPlayerController(WorldContextObject, 0))
-	{
-		if (const APawn* PlayerPawn = PlayerController->GetPawn())
-		{
-			PlayerRotation = PlayerPawn->GetActorRotation();
-		}
-	}
-	return PlayerRotation;
+	const ACharacter* PlayerCharacter = UPlayerCharacterHelpers::GetPlayerCharacterFromPlayerController(WorldContextObject, PlayerIndex);
+	return PlayerCharacter ? PlayerCharacter->GetActorRotation() : FRotator::ZeroRotator;
 }
 
-FVector UPlayerTransformHelpers::GetPlayerScale(const UObject* WorldContextObject)
+FVector UPlayerTransformHelpers::GetPlayerScale(const UObject* WorldContextObject, const int PlayerIndex)
 {
-	FVector PlayerScale = FVector::ZeroVector;
-	if (const APlayerController* PlayerController = UGameplayStatics::GetPlayerController(WorldContextObject, 0))
-	{
-		if (const APawn* PlayerPawn = PlayerController->GetPawn())
-		{
-			PlayerScale = PlayerPawn->GetActorScale();
-		}
-	}
-	return PlayerScale;
+	const ACharacter* PlayerCharacter = UPlayerCharacterHelpers::GetPlayerCharacterFromPlayerController(WorldContextObject, PlayerIndex);
+	return PlayerCharacter ? PlayerCharacter->GetActorScale() : FVector::ZeroVector;
+}
+
+FQuat UPlayerTransformHelpers::GetPlayerRotationQuat(const UObject* WorldContextObject, const int PlayerIndex)
+{
+	const ACharacter* PlayerCharacter = UPlayerCharacterHelpers::GetPlayerCharacterFromPlayerController(WorldContextObject, PlayerIndex);
+	return PlayerCharacter ? PlayerCharacter->GetActorQuat() : FQuat::Identity;
+}
+
+FVector UPlayerTransformHelpers::GetPlayerSocketLocation(const UObject* WorldContextObject, const USceneComponent* Target, const FName& SocketName, const int PlayerIndex)
+{
+	return FVector::ZeroVector;
 }
