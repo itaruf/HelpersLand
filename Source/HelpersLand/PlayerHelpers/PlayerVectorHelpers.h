@@ -13,7 +13,7 @@ UCLASS()
 class HELPERSLAND_API UPlayerVectorHelpers : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
-	
+
 public:
 	// Return the Player's forward vector starting from their center  
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "PlayerVectorHelpers", meta = (WorldContext = "WorldContextObject"))

@@ -13,9 +13,10 @@ UCLASS()
 class HELPERSLAND_API UPlayerCharacterHelpers : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
+
 public:
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "PlayerPawnHelpers", meta = (WorldContext = "WorldContextObject"))
-	static ACharacter* GetPlayerCharacterFromPlayerController(const UObject* WorldContextObject, int PlayerIndex);
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "PlayerPawnHelpers", meta = (WorldContext = "WorldContextObject"))
-	static ACharacter* GetPlayerPawnFromGameMode(const UObject* WorldContextObject);
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "PlayerCharacterHelpers", meta = (WorldContext = "WorldContextObject"))
+	static FName GetPlayerCharacterName(const UObject* WorldContextObject, const int PlayerIndex);
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "PlayerCharacterHelpers", meta = (WorldContext = "WorldContextObject"))
+	static ACharacter* GetPlayerCharacterFromPlayerController(const UObject* WorldContextObject, const int PlayerIndex);
 };

@@ -13,7 +13,8 @@ UCLASS()
 class HELPERSLAND_API UPlayerTransformHelpers : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
-
+public:
+	
 public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "PlayerHelpers", meta = (WorldContext = "WorldContextObject"))
 	static FVector GetPlayerLocation(const UObject* WorldContextObject, const int PlayerIndex = 0);
